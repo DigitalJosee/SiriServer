@@ -59,7 +59,7 @@ class time(Plugin):
                                 }
                         },
                     "failure": {
-                                "de-DE": "Ich kann dir die Uhr gerade nicht anzeigen!", "en-US": "I cannot show you the clock right now"
+                                "de-DE": "Ich kann dir die Uhr gerade nicht anzeigen!", "en-US": "Eu nao posso mostrar o seu relogio agora!"
                                 }
                     }
 
