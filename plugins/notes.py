@@ -40,23 +40,23 @@ class Create(ClientBoundCommand):
         self.refId = refId if refId != None else str.upper(str(uuid4()))
         
     def to_plist(self):
-    	self.add_item('aceId')
+        self.add_item('aceId')
         self.add_item('refId')
         self.add_property('contents')
         return super(Create, self).to_plist()
 
 class note(Plugin):
     localizations = {"noteDefaults": 
-                        {"searching":{"en-US": "Creating your note ..."}, 
-                         "result": {"en-US": "Here is your note:"},
-                         "nothing": {"en-US": "What should I note?"}}, 
+                        {"searching":{"en-US": "Criando sua nota ..."}, 
+                         "result": {"en-US": "Aqui esta a nota:"},
+                         "nothing": {"en-US": "O que voce quer anotar?"}}, 
                     "failure": {
-                                "en-US": "I cannot type your note right now."
+                                "en-US": "Eu nao posso arquivar sua nota agora."
                                 }
                     }
-    @register("en-US", "(.*note [a-zA-Z0-9]+)|(.*create.*note [a-zA-Z0-9]+)|(.*write.*note [a-zA-Z0-9]+)")
+    @register("en-US", "(.*anote [a-zA-Z0-9]+)|(.*crie.*nota [a-zA-Z0-9]+)|(.*escreva.*nota [a-zA-Z0-9]+)")
     def writeNote(self, speech, language):
-        content_raw = re.match(".*note ([a-zA-Z0-9, ]+)$", speech, re.IGNORECASE)
+        content_raw = re.match(".*nota ([a-zA-Z0-9, ]+)$", speech, re.IGNORECASE)
         if content_raw == None:
             view_initial = AddViews(self.refId, dialogPhase="Reflection")
             view_initial.views = [AssistantUtteranceView(text=note.localizations['noteDefaults']['nothing'][language], speakableText=note.localizations['noteDefaults']['nothing'][language], dialogIdentifier="Note#failed")]
